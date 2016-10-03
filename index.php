@@ -2,10 +2,26 @@
 
 require_once('autoload.php');
 
-$text = new Text();
-$button = new Button();
-$picture = new Picture(400, 300);
+?>
 
-$picture->render('php-elephant.png');
-$text->render('This is text');
-$button->render('Press this!');
+<html>
+<body>
+
+<?php
+
+$picture = new Picture(400, 300);
+$text = new Text();
+
+
+$commentary = new CommentaryDecorator($picture);
+$commentary->render('php-elephant.png');
+
+echo "<br>";
+
+$bordered = new BorderDecorator($text, 3, 'red');
+$bordered->render('Red text');
+
+?>
+
+</body>
+</html>
