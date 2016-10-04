@@ -4,9 +4,10 @@ class Text extends Block
 {
     /**
      * @param string $content
+     * @return mixed
      */
     public function render($content)
     {
-        echo '<p>' . $content . '</p>';
+        return '<p>' . $content . '</p>';
     }
 }

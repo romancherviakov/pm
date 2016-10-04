@@ -8,6 +8,6 @@ class Block implements BlockInterface
      */
     public function render($content)
     {
-        echo $content;
+        return $content;
     }
 }

@@ -8,6 +8,6 @@ class Button extends Block
      */
     public function render($content)
     {
-        echo '<button>' . $content . '</button>';
+        return '<button>' . $content . '</button>';
     }
 }

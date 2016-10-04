@@ -51,6 +51,6 @@ class Picture extends Block
 
     public function render($content)
     {
-        echo '<img src=' . $content . ' width=' . $this->width . ' height=' . $this->height . '>';
+        return '<img src=' . $content . ' width=' . $this->width . ' height=' . $this->height . '>';
     }
 }
