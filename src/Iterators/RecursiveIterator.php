@@ -7,13 +7,12 @@ use Composite\Composite;
 
 class RecursiveIterator implements IteratorInterface
 {
-    private $elements = [];
-    private $count;
+    protected $elements = [];
+    private $count = 0;
 
     public function __construct(Component $component)
     {
         $this->getElements($component);
-        $this->count = 0;
     }
 
     private function getElements(Component $component)
