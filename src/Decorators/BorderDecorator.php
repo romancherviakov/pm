@@ -14,10 +14,9 @@ class BorderDecorator extends AbstractDecorator
         $this->color = $color;
     }
 
-    public function render($content)
+    public function render()
     {
-        echo '<div style="border: ' . $this->width . 'px ' . $this->color. ' solid">';
-        echo $this->block->render($content);
-        echo '</div>';
+        return '<div style="border: ' . $this->width . 'px ' . $this->color . ' solid">' .
+        $this->block->render() . '</div>';
     }
 }

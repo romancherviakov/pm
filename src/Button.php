@@ -3,11 +3,11 @@
 class Button extends Block
 {
     /**
-     * @param string $content
+
      * @return mixed
      */
-    public function render($content)
+    public function render()
     {
-        return '<button>' . $content . '</button>';
+        return '<button>' . $this->content . '</button>';
     }
 }

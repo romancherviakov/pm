@@ -6,8 +6,8 @@ class Text extends Block
      * @param string $content
      * @return mixed
      */
-    public function render($content)
+    public function render()
     {
-        return '<p>' . $content . '</p>';
+        return '<p>' . $this->content . '</p>';
     }
 }

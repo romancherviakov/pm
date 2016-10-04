@@ -3,8 +3,7 @@
 interface BlockInterface
 {
     /**
-     * @param $content
      * @return mixed
      */
-    public function render($content);
+    public function render();
 }

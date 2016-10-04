@@ -2,6 +2,8 @@
 
 namespace Decorators;
 
+use BlockInterface;
+
 abstract class AbstractDecorator implements \BlockInterface
 {
     protected $block;
@@ -23,14 +25,13 @@ abstract class AbstractDecorator implements \BlockInterface
      * AbstractDecorator constructor.
      * @param $block
      */
-    public function __construct($block)
+    public function __construct(BlockInterface $block)
     {
         $this->block = $block;
     }
 
     /**
-     * @param $content
      * @return mixed
      */
-    abstract public function render($content);
+    abstract public function render();
 }

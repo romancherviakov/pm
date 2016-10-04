@@ -2,11 +2,13 @@
 
 namespace Composite;
 
+use BlockInterface;
+
 abstract class Component
 {
     protected $component;
 
-    public function __construct($component)
+    public function __construct(BlockInterface $component)
     {
         $this->component = $component;
     }

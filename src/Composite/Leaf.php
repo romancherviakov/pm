@@ -26,6 +26,6 @@ class Leaf extends Component
 
     public function render()
     {
-
+        $this->component->render();
     }
 }

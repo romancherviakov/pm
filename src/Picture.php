@@ -7,14 +7,15 @@ class Picture extends Block
 
     /**
      * Picture constructor.
+     * @param $content
      * @param $width
      * @param $height
      */
-    public function __construct($width, $height)
+    public function __construct($content, $width, $height)
     {
+        parent::__construct($content);
         $this->width = $width;
         $this->height = $height;
-
     }
 
     /**
@@ -49,8 +50,8 @@ class Picture extends Block
         $this->height = $height;
     }
 
-    public function render($content)
+    public function render()
     {
-        return '<img src=' . $content . ' width=' . $this->width . ' height=' . $this->height . '>';
+        return '<img src=' . $this->content . ' width=' . $this->width . ' height=' . $this->height . '>';
     }
 }

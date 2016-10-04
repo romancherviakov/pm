@@ -4,14 +4,14 @@ namespace Decorators;
 
 class CommentaryDecorator extends AbstractDecorator
 {
-    public function render($content)
+    public function render()
     {
-        $contentLength = $this->getContentLength($content);
+        $contentLength = $this->getContentLength($this->block->getContent());
 
-        echo '<!-- Type: '. get_class($this->block) . ', ID: ' .
-            spl_object_hash($this->block). ', Length: ' . $contentLength . '  -->';
-        echo $this->block->render($content);
-        echo '<!-- Type: '. get_class($this->block) . ', ID: ' .
-            spl_object_hash($this->block). ', Length: ' . $contentLength . '  -->';
+        return '<!-- Type: ' . get_class($this->block) . ', ID: ' .
+        spl_object_hash($this->block) . ', Length: ' . $contentLength . '  -->'
+        . $this->block->render()
+        . '<!-- Type: ' . get_class($this->block) . ', ID: ' .
+        spl_object_hash($this->block) . ', Length: ' . $contentLength . '  -->';
     }
 }
