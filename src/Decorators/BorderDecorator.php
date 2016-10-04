@@ -1,5 +1,7 @@
 <?php
 
+namespace Decorators;
+
 class BorderDecorator extends AbstractDecorator
 {
     private $color;

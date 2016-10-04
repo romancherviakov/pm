@@ -1,5 +1,6 @@
 <?php
 
+namespace Decorators;
 
 abstract class AbstractDecorator implements \BlockInterface
 {

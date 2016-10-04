@@ -1,5 +1,7 @@
 <?php
 
+namespace Decorators;
+
 class CommentaryDecorator extends AbstractDecorator
 {
     public function render($content)
@@ -13,13 +15,3 @@ class CommentaryDecorator extends AbstractDecorator
             spl_object_hash($this->block). ', Length: ' . $contentLength . '  -->';
     }
 }
-
-
-
-
-/*
- * <!-- Block BEGIN. Type: <?= get_class($block) ?>, ID: <?= spl_object_hash($block) ?>, Length: <?= $block->getLength() ?> -->
-… Block content …
-<!-- Block END. Type: <?= get_class($block) ?>, ID: <?= spl_object_hash($block) ?> -->
-
- */
