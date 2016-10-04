@@ -2,21 +2,17 @@
 
 require_once('vendor/autoload.php');
 
-$decoratedText = new \Decorators\BorderDecorator(new Text('Text'), 3, 'red');
-$commentedText = new \Decorators\CommentaryDecorator(new Picture('php-elephant.png'));
-$button = new Button('Button');
+use Composite\Composite;
+use Composite\Leaf;
 
-$c1 = new \Composite\Composite();
-$c1->add(new \Composite\Leaf($decoratedText));
+$c1 = new Composite();
+$c2 = new Composite();
 
-$c2 = new \Composite\Composite();
-$c2->add(new \Composite\Leaf($commentedText));
-$c2->add(new \Composite\Leaf($button));
-
+$c1->add(new Leaf(new Text('Text1')));
+$c2->add(new Leaf(new Text('Text2')));
+$c2->add(new Leaf(new Text('Text3')));
 $c1->add($c2);
+$c1->add(new Leaf(new Text('Text4')));
+$c1->add(new Leaf(new Text('Text5')));
 
-$c3 = new \Composite\Composite();
-$c3->add($c1);
-$c3->add($c2);
-
-$c3->render();
+$c1->render();
