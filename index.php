@@ -2,17 +2,29 @@
 
 require_once('vendor/autoload.php');
 
-use Composite\Composite;
-use Composite\Leaf;
+$c2 = new Composite\Composite();
+$l1 = new \Composite\Leaf(new Text('1'));
+$l2 = new \Composite\Leaf(new Text('2'));
+$c1 = new \Composite\Composite();
+$l3 = new \Composite\Leaf(new Text('3'));
+$l4 = new \Composite\Leaf(new Text('4'));
 
-$c1 = new Composite();
-$c2 = new Composite();
+$c1->add($l3);
+$c1->add($l4);
 
-$c1->add(new Leaf(new Text('Text1')));
-$c2->add(new Leaf(new Text('Text2')));
-$c2->add(new Leaf(new Text('Text3')));
-$c1->add($c2);
-$c1->add(new Leaf(new Text('Text4')));
-$c1->add(new Leaf(new Text('Text5')));
+$c2->add($l1);
+$c2->add($l2);
 
-$c1->render();
+$c3 = new \Composite\Composite();
+
+$c3->add($c1);
+$c3->add($c2);
+
+$iterator = new \Iterators\RecursiveIterator($c3);
+
+$number = 0;
+while($iterator->isValid()) {
+    echo $iterator->current()->render() . '[' . $number++ .
+        ', class:' . get_class($iterator->current()) . ']';
+    $iterator->next();
+}
