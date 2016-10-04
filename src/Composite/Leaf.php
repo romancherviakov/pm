@@ -2,8 +2,17 @@
 
 namespace Composite;
 
+use BlockInterface;
+
 class Leaf extends Component
 {
+    protected $component;
+
+    public function __construct(BlockInterface $component)
+    {
+        $this->component = $component;
+    }
+
     public function add($child)
     {
         throw new \Exception('Can not add element to leaf');
@@ -26,6 +35,6 @@ class Leaf extends Component
 
     public function render()
     {
-        $this->component->render();
+        echo $this->component->render();
     }
 }

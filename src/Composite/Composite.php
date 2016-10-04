@@ -28,8 +28,10 @@ class Composite extends Component
 
     public function render()
     {
+        echo '<div>';
         foreach ($this->getChildren() as $child ) {
             $child->render();
         }
+        echo '</div>';
     }
 }
