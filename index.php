@@ -1,30 +1,59 @@
 <?php
 
+use Composite\Composite;
+use Composite\Leaf;
+use Decorators\BorderDecorator;
+use Decorators\CommentaryDecorator;
+use Iterators\RecursiveIterator;
+use Strategy\CommentaryStrategy;
+use Strategy\CompositeStrategy;
+use Strategy\Context;
+
 require_once('vendor/autoload.php');
 
-$c2 = new Composite\Composite();
-$l1 = new \Composite\Leaf(new Text('1'));
-$l2 = new \Composite\Leaf(new Text('2'));
-$c1 = new \Composite\Composite();
-$l3 = new \Composite\Leaf(new Text('3'));
-$l4 = new \Composite\Leaf(new Text('4'));
-
-$c1->add($l3);
-$c1->add($l4);
-
-$c2->add($l1);
-$c2->add($l2);
-
-$c3 = new \Composite\Composite();
-
-$c3->add($c1);
-$c3->add($c2);
-
-$iterator = new \Iterators\RecursiveIterator($c3);
-
-$number = 0;
-while($iterator->isValid()) {
-    echo $iterator->current()->render() . '[' . $number++ .
-        ', class:' . get_class($iterator->current()) . ']';
-    $iterator->next();
+function render($content) {
+    echo $content;
 }
+
+// Task1
+$picture = new Picture('php-elephant.png', 400, 300);
+$text = new Text('This is text');
+$button= new Button('Press this');
+
+render($picture->render() . $text->render() . $button->render());
+
+//Task2
+
+$textWithCommentaries = new CommentaryDecorator($text);
+$buttonWithBorder = new BorderDecorator($button,1, 'green');
+
+render($textWithCommentaries->render() . $buttonWithBorder->render());
+
+// Task3
+
+$composite = new Composite();
+$composite->add(new Leaf($text));
+$composite->add(new Leaf($textWithCommentaries));
+$compositeMain = new Composite();
+$compositeMain->add(new Leaf($text));
+$compositeMain->add($composite);
+
+$compositeMain->render();
+
+// Task4
+
+$recursiveIterator = new RecursiveIterator($composite);
+$index = 0;
+while ($recursiveIterator->isValid()) {
+    $current = $recursiveIterator->current();
+    render($index++ . $current->render() . get_class($current));
+    $recursiveIterator->next();
+}
+
+// Task5
+
+$commentaryContext = new Context(new CommentaryStrategy(), $text);
+$compositeContext = new Context(new CompositeStrategy(), $text);
+
+render($commentaryContext->execute());
+render($compositeContext->execute());
